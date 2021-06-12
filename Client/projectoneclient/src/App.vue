@@ -32,15 +32,16 @@
             <v-sheet rounded="xl" elevation="7">
               <v-list flat>
                 <v-subheader>SERVICIOS</v-subheader>
-                <v-list-item-group v-model="selectedItem" color="primary">
+                <v-list-item-group
+                  v-model="selectedItem"
+                  color="blue-grey darken-1"
+                >
                   <v-list-item v-for="(item, i) in items2" :key="i">
                     <v-list-item-icon>
                       <v-icon v-text="item.icon"></v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
-                      <v-list-item-title
-                        v-text="item.text"
-                      ></v-list-item-title>
+                      <v-list-item-title v-text="item.text"></v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
                 </v-list-item-group>
@@ -61,6 +62,7 @@
                   <v-row>
                     <v-col cols="12" md="5">
                       <v-text-field
+                        placeholder="Empresa / Servicio"
                         append-icon="mdi-google-my-business"
                         v-model="empresa"
                         :rules="empresaRules"
@@ -312,7 +314,7 @@
                               </v-row>
 
                               <v-row>
-                                <v-col cols="12" md="4">
+                                <v-col cols="12" md="6">
                                   <v-checkbox
                                     v-model="runningSchedule"
                                     hide-details
@@ -321,7 +323,7 @@
                                   ></v-checkbox>
                                 </v-col>
 
-                                <v-col cols="12" md="4">
+                                <v-col cols="12" md="6">
                                   <v-dialog
                                     ref="dialog"
                                     v-model="restScheduleDialog"
@@ -364,6 +366,10 @@
                                   </v-dialog>
                                 </v-col>
                               </v-row>
+
+                              <v-row>
+                                <ScheduleComponent />
+                              </v-row>
                             </v-container>
                           </v-card-text>
                           <v-card-actions>
@@ -389,6 +395,7 @@
 
 <script>
 //import HelloWorld from './components/HelloWorld';
+import ScheduleComponent from './components/schedule/ScheduleComponent';
 import { mapGetters, mapActions } from "vuex";
 import UserButton from "./components/app-bar/UserButton";
 
@@ -401,6 +408,7 @@ export default {
     //HelloWorld,
     //NubeDePalabras
     UserButton,
+    ScheduleComponent
   },
 
   computed: {
