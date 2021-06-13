@@ -12,6 +12,8 @@
 
         <v-responsive max-width="260">
           <v-text-field
+            prepend-inner-icon = "mdi-magnify"
+            placeholder="Buscar servicios"
             dense
             flat
             hide-details
