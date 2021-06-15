@@ -8,12 +8,14 @@
     >
       <template v-slot:activator="{ on, attrs }">
         <v-avatar
-         v-bind="attrs"
+          v-bind="attrs"
           v-on="on"
-            class="hidden-sm-and-down"
-            color="grey"
-            size="32"
-        ></v-avatar>
+          class="hidden-sm-and-down"
+          size="32"
+          color="blue-grey darken-1"
+        >
+        <v-icon color="white"> mdi-account  </v-icon>
+        </v-avatar>
       </template>
 
       <v-card>
@@ -37,7 +39,7 @@
                 icon
                 @click="fav = !fav" 
               >
-                <v-icon>mdi-pencil</v-icon>
+                <v-icon color="blue-grey darken-1">mdi-pencil</v-icon>
               </v-btn>
             </v-list-item-action>
           </v-list-item>

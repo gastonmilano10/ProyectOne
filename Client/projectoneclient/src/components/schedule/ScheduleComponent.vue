@@ -1,7 +1,7 @@
 <template>
 <v-container>   
-<v-simple-table>
-    <template v-slot:default>
+<v-simple-table background-color="white">
+    <template v-slot:default >
       <thead>
         <tr>
           <th class="text-left">
