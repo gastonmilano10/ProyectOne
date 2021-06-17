@@ -1,9 +1,7 @@
 <template>
   <v-sheet
-    min-height="70vh"
     rounded="lg"
-    class="pa-6"
-    color="transparent"
+    class="pa-6 mb-7 backgroundStyle2"
   >
     <v-container>
       <v-form v-model="valid">
@@ -116,7 +114,8 @@
             </v-autocomplete>
           </v-col>
 
-          <v-col cols="12" md="4">
+          <!-- DIALOG HORARIOS -->
+          <!-- <v-col cols="12" md="4">
             <v-dialog v-model="dialog" persistent max-width="50%">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
@@ -311,7 +310,7 @@
                 </v-card-actions>
               </v-card>
             </v-dialog>
-          </v-col>
+          </v-col> -->
         </v-row>
       </v-form>
     </v-container>
@@ -319,13 +318,11 @@
 </template>
 
 <script>
-import ScheduleComponent from '../schedule/ScheduleComponent';
 
 export default {
   name: 'RegistrationForm',
 
   components:{
-    ScheduleComponent
   },
 
   data: () => ({
@@ -362,5 +359,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.backgroundStyle2 {
+  /* background: #355C7D;  
+  background: -webkit-linear-gradient(to right, #4d2e36, #4d4158, #29465f);  
+  background: linear-gradient(to right, #4d2e36, #4d4158, #29465f);  */
+  background: #141E30;  
+  background: -webkit-linear-gradient(to right, #243B55, #141E30);
+  background: linear-gradient(to right, #243B55, #141E30);
+}
 </style>

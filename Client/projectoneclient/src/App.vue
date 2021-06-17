@@ -1,15 +1,15 @@
 <template>
   <v-app id="inspire">
     <AppBar />
-    <v-main style="background: #1d4350; background: -webkit-linear-gradient(to bottom, #1d4350, #a43931); background: linear-gradient(to bottom, #1d4350, #a43931); ">
-      <v-container >
+    <v-main class="backgroundStyle">
+      <v-container>
         <v-row>
           <v-col cols="3">
             <ServicesList />
           </v-col>
 
           <v-col>
-            <RegistrationForm />
+            <StepperComponent/>
           </v-col>
         </v-row>
       </v-container>
@@ -19,7 +19,7 @@
 
 <script>
 import ServicesList from "./components/registration/SevicesList";
-import RegistrationForm from "./components/registration/RegistrationForm.vue";
+import StepperComponent from "./components/registration/StepperComponent"
 import AppBar from "./components/app-bar/AppBar";
 import { mapGetters, mapActions } from "vuex";
 
@@ -28,8 +28,8 @@ export default {
 
   components: {
     AppBar,
-    RegistrationForm,
     ServicesList,
+    StepperComponent
   },
 
   computed: {
@@ -41,6 +41,20 @@ export default {
   },
 
   data: () => ({
+    e6: 1,
   }),
 };
 </script>
+
+<style scoped>
+
+.backgroundStyle {
+  background: #355C7D;  
+  background: -webkit-linear-gradient(to right, #4d2e36, #4d4158, #29465f);  
+  background: linear-gradient(to right, #4d2e36, #4d4158, #29465f); 
+  /* background: #141E30;
+  background: -webkit-linear-gradient(to right, #243B55, #141E30);
+  background: linear-gradient(to right, #243B55, #141E30); */
+}
+
+</style>
