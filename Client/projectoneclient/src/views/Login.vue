@@ -5,7 +5,7 @@
         <v-container fluid class="text-center">
           <h1>Ingresar</h1>
 
-          <v-form v-on:submit.prevent="login">
+          <v-form v-on:submit.prevent="doLogin">
             <v-text-field
               class="mt-5"
               append-icon="mdi-account"
@@ -40,7 +40,7 @@
           <h5 class="mt-5 mb-2">
             Si no tienes usuario, <a>REGISTRATE AQUI</a>
           </h5>
-          <a>CONTINUAR SIN USUARIO</a>
+          <router-link to='/home'>CONTINUAR SIN USUARIO</router-link>
         </v-container>
       </v-card>
     </div>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import Axios from "axios";
+import {mapActions} from 'vuex'
 
 export default {
   name: "Login",
@@ -67,15 +67,15 @@ export default {
   },
 
   methods: {
-    login() {
+    ...mapActions(["login"]),
+
+    doLogin() {
       let jsonLogin = {
-        user: this.user,
+        username: this.user,
         password: this.password,
       };
 
-      Axios.post('https://localhost:5001/api/Users/Login', jsonLogin)
-      .then(response => console.log(response))
-      console.log(jsonLogin);
+      this.login(jsonLogin)
     },
   },
 };

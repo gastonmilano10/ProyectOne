@@ -1,19 +1,21 @@
 import Vue from 'vue'
-import Login from './components/Login.vue'
+import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import store from './store'
-import VueRouter from 'vue-router'
+import vueRouter from 'vue-router'
 import VueAxios from 'vue-axios'
-import Axios from 'axios'
+import axios from 'axios'
 import "../src/main.scss"
+import router from './router'
 
 Vue.config.productionTip = false
-Vue.use(VueAxios, Axios);
-Vue.use(VueRouter);
+Vue.use(VueAxios, axios);
+Vue.use(vueRouter);
 
 new Vue({
   vuetify,
   store,
-  render: h => h(Login)
+  router,
+  render: h => h(App)
 }).$mount('#app')
 

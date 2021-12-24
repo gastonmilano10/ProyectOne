@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  //import {mapGetters, mapActions} from 'vuex';
+  import {mapGetters, mapActions} from 'vuex';
   import pruebaComponent from './pruebaComponent';
   import NubeDePalabras from './NubeDePalabras';
 
