@@ -38,7 +38,7 @@
       color="white"
       scroll-target="#scrolling-techniques-7"
     >
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
 
       <v-spacer></v-spacer>
 

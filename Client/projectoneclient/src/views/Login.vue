@@ -9,7 +9,7 @@
             <v-text-field
               class="mt-5"
               append-icon="mdi-account"
-              label="Usuario / correo"
+              label="Usuario / Correo"
               solo
               v-model="user"
             ></v-text-field>
@@ -24,7 +24,7 @@
               v-model="password"
             ></v-text-field>
 
-            <v-btn block color="primary" type="submit"> Ingresar </v-btn>
+            <v-btn block color="primary" type="submit" :disabled="invalid"> Ingresar </v-btn>
           </v-form>
 
           <h5 class="mt-5 mb-2">O ingresar con:</h5>
@@ -38,7 +38,7 @@
           </v-btn>
 
           <h5 class="mt-5 mb-2">
-            Si no tienes usuario, <a>REGISTRATE AQUI</a>
+            Si no tienes usuario, <router-link to='/user-registration'>REGISTRATE AQUI</router-link>
           </h5>
           <router-link to='/home'>CONTINUAR SIN USUARIO</router-link>
         </v-container>
@@ -52,9 +52,6 @@ import {mapActions} from 'vuex'
 
 export default {
   name: "Login",
-  props: {
-    source: String,
-  },
 
   data() {
     return {
@@ -82,22 +79,9 @@ export default {
 </script>
 
 <style scoped>
-.app-container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgb(238, 174, 202);
-  background: radial-gradient(
-    circle,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
-}
-
 .login-container {
-  width: 60%;
-  max-width: 350px;
+  width: 80%;
+  max-width: 400px;
   display: flex;
   justify-content: center;
   border-radius: 5px;
