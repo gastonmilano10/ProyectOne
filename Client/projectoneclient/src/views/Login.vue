@@ -5,26 +5,42 @@
         <v-container fluid class="text-center">
           <h1>Ingresar</h1>
 
-          <v-form v-on:submit.prevent="doLogin">
+          <v-form
+            ref="loginForm"
+            v-model="isLoginValid"
+            v-on:submit.prevent="doLogin"
+          >
             <v-text-field
               class="mt-5"
               append-icon="mdi-account"
               label="Usuario / Correo"
               solo
-              v-model="user"
+              :counter="15"
+              v-model="username"
+              :rules="usernameRules"
             ></v-text-field>
 
             <v-text-field
-              class="mt-n5"
-              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-              :type="show1 ? 'text' : 'password'"
+              class="mt-n1"
+              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="showPassword ? 'text' : 'password'"
               label="Contraseña"
-              @click:append="show1 = !show1"
+              @click:append="showPassword = !showPassword"
               solo
+              :counter="20"
               v-model="password"
+              :rules="passwordRules"
             ></v-text-field>
 
-            <v-btn block color="primary" type="submit" :disabled="invalid"> Ingresar </v-btn>
+            <v-btn
+              block
+              color="primary"
+              type="submit"
+              :disabled="!isLoginValid"
+              @click="validateLogin"
+            >
+              Ingresar
+            </v-btn>
           </v-form>
 
           <h5 class="mt-5 mb-2">O ingresar con:</h5>
@@ -38,9 +54,10 @@
           </v-btn>
 
           <h5 class="mt-5 mb-2">
-            Si no tienes usuario, <router-link to='/user-registration'>REGISTRATE AQUI</router-link>
+            Si no tienes usuario,
+            <router-link to="/user-registration">REGISTRATE AQUI</router-link>
           </h5>
-          <router-link to='/home'>CONTINUAR SIN USUARIO</router-link>
+          <router-link to="/home">CONTINUAR SIN USUARIO</router-link>
         </v-container>
       </v-card>
     </div>
@@ -48,31 +65,50 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
   name: "Login",
 
   data() {
     return {
-      show1: false,
-      user: "",
-      password: "",
+      showPassword: false,
+      isLoginValid: true,
       error: false,
       error_msj: false,
+      
+      username: "",
+      password: "",
+
+      usernameRules: [
+        (v) => !!v || "El usuario es requerido",
+        (v) =>
+          v.length <= 15 || "El usuario debe contener menos de 15 caracteres",
+      ],
+
+      passwordRules: [
+        (v) => !!v || "La contraseña es requerida",
+        (v) =>
+          v.length <= 20 ||
+          "La contraseña debe contener menos de 20 caracteres",
+      ],
     };
   },
 
   methods: {
     ...mapActions(["login"]),
 
+    validateLogin() {
+      this.$refs.loginForm.validate();
+    },
+
     doLogin() {
       let jsonLogin = {
-        username: this.user,
+        username: this.username,
         password: this.password,
       };
 
-      this.login(jsonLogin)
+      this.login(jsonLogin);
     },
   },
 };

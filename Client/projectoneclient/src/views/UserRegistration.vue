@@ -5,7 +5,11 @@
         <v-container fluid class="text-center">
           <h1>Registrar nuevo usuario</h1>
 
-          <v-form ref="form" v-model="valid" lazy-validation>
+          <v-form
+            ref="registrationForm"
+            v-model="isRegistrationValid"
+            v-on:submit.prevent="doRegistration"
+          >
             <v-text-field
               class="mt-5"
               label="Nombre"
@@ -64,6 +68,7 @@
               solo
               v-model="password1"
               :rules="password1Rules"
+              :counter="20"
             ></v-text-field>
 
             <v-text-field
@@ -75,6 +80,7 @@
               solo
               v-model="password2"
               :rules="password2Rules"
+              :counter="20"
             ></v-text-field>
 
             <v-divider></v-divider>
@@ -82,8 +88,9 @@
             <v-btn
               block
               color="primary"
-              :disabled="!valid"
-              @click="validate"
+              :disabled="!isRegistrationValid"
+              @click="validateRegistration"
+              type="submit"
             >
               Registrar
             </v-btn>
@@ -112,6 +119,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "UserRegistration",
 
@@ -121,8 +130,8 @@ export default {
       showPassword2: false,
       error: false,
       error_msj: false,
+      isRegistrationValid: true,
 
-      valid: true,
       name: "",
       surname: "",
       phone: "",
@@ -171,10 +180,25 @@ export default {
   },
 
   methods: {
-      validate () {
-        this.$refs.form.validate()
-      },
+    ...mapActions(["userRegistration"]),
+
+    validateRegistration() {
+      this.$refs.registrationForm.validate();
     },
+
+    doRegistration() {
+      let jsonRegistration = {
+        name: this.name,
+        surname: this.surname,
+        phone: this.phone,
+        email: this.email,
+        username: this.username,
+        password: this.password1,
+      };
+
+      this.userRegistration(jsonRegistration);
+    },
+  },
 };
 </script>
 
