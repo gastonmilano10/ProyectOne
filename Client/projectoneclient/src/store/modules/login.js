@@ -9,7 +9,8 @@ const state = {
 
 const getters = {
     getMensaje: state => state.mensaje,
-    getListaPrueba: state => state.listaPrueba
+    getListaPrueba: state => state.listaPrueba,
+    getCurrentUser: state => state.currentUser
 };
 
 const actions = { 
@@ -19,9 +20,11 @@ const actions = {
         axios.post("https://localhost:5001/api/Users/Login", jsonLogin, {headers: {'Accept': '/', 'Content-Type': 'application/json'}})
         .then(response => {
             console.log(response.data);
-            commit('setCurrentUser', response.data.userName); //CAMBIAR POR JSON USER
-            localStorage.setItem("currentUser", response.data.userName)
-            router.push({path: `/home`});
+            if (response.data.isSuccess) {
+                commit('setCurrentUser', response.data.result); //CAMBIAR POR JSON USER
+                localStorage.setItem("currentUser", response.data.result)
+                router.push({path: `/home`});
+            }
 
             //DEVOLVER TOKEN Y GUARDAR EN LOCALSTORAGE
             //router.go(-1); PANTALLA ANTERIOR, cuando token esta vencido por ejemplo

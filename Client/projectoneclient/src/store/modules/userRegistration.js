@@ -6,7 +6,7 @@ const state = {
 };
 
 const getters = {
-    getCurrentUser: state => state.currentUser,
+    getCurrentUser2: state => state.currentUser,
 };
 
 const actions = { 
